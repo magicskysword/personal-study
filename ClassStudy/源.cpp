@@ -17,11 +17,16 @@ public:
 		wealth = toWealth;
 		age = 0;
 		health = 100;
+		cout << "A human named " << name << " was bron."<< endl;
 	}
+	~Human()
+	{
+		cout << "A human named " << name << " dies,he/she was " << age << endl;
+	};
 	int GetAge()
 	{
 		return age;
-	}
+	};
 	void AddAge(int number)
 	{
 		age += number;
@@ -41,11 +46,11 @@ void IntroduceSelf(Human Aman)
 }
 int main()
 {
-
-	Human A("ZhangSan", 10000);
-	Human B("LiSi", 50000);
-	A.AddAge(20);
-	B.AddAge(25);
-	IntroduceSelf(A);
-	IntroduceSelf(B);
+	Human* A = new Human("ZhangSan", 5000);
+	Human* B = new Human("LiSi", 10000);
+	(*A).AddAge(20);
+	B->AddAge(25);
+	IntroduceSelf(*A);
+	IntroduceSelf(*B);
+	delete A;
 }
