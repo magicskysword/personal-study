@@ -27,6 +27,7 @@ public:
 		wealth = 0;
 		age = 0;
 		health = 100;
+		from = fromWhere;
 		*id = HumanIdNum;
 		HumanIdNum += 1;
 		cout << "A human named " << GetName() << " was bron.His/Her id is "<< GetId() <<endl;
