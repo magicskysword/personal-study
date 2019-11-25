@@ -26,7 +26,6 @@ public:
 		familyName = lastname;
 		wealth = 0;
 		age = 0;
-		from = fromWhere;
 		health = 100;
 		*id = HumanIdNum;
 		HumanIdNum += 1;
