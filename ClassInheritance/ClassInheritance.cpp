@@ -93,11 +93,11 @@ public:
 		wealth = 0;
 		cout << GetName() << " come the world." << endl;
 	}
-	~Chinese()
+	~Chinese() override final
 	{
 		cout << GetName() << " stop " << GetCall(possessive,false) << " breath." << endl;
 	};
-	string GetName()
+	string GetName() override final
 	{
 		return familyName + givenName;
 	}
@@ -106,7 +106,7 @@ private:
 };
 class American :public Human
 {
-public:
+public: 
 	American(string nameFirst, string nameLast, Human::HumanSex whichSex)
 	{
 		familyName = nameLast;
@@ -118,11 +118,11 @@ public:
 		wealth = 0;
 		cout << GetName() << " step the world." << endl;
 	}
-	~American()
+	~American() override final
 	{
 		cout << GetName() << " give up " << GetCall(possessive, false) << " mind." << endl;
 	};
-	string GetName()
+	string GetName() override final
 	{
 		return familyName + " " + givenName;
 	}
