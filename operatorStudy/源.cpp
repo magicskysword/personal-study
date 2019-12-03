@@ -1,7 +1,7 @@
 #include<iostream>
 #include<sstream>
 #include<string>
-
+#include <typeinfo>
 using namespace std;
 class star
 {
@@ -28,11 +28,11 @@ public:
 		pic += "*";
 		return copy;
 	}
-	operator const char* ()//转换运算符重载
+	explicit operator const string ()//转换运算符重载
 	{
 		ostringstream starInfo;
 		starInfo << "Star num:" << num << endl << "The picture:" << pic << endl;
-		starString = starInfo.str();//用私有成员保存，防止临时变量返回时被销毁
+		starString = (string)starInfo.str();//用私有成员保存，防止临时变量返回时被销毁
 		return starString.c_str();
 	}
 	star operator + (int addNum)//加减运算符重载
@@ -117,10 +117,45 @@ public:
 		pic = starCopy.pic;
 		return *this;
 	}
+	star& operator= (const int equalNum)//重载赋值整形运算符
+	{
+		if (equalNum <= 0)
+		{
+			num = 0;
+			pic = "";
+		}
+		else
+		{
+			num = equalNum;
+			pic = "";
+			for (int i = 0; i < equalNum; i++)
+			{
+				pic += "*";
+			};
+		}
+		return *this;
+	}
 	star(const star& starCopy)//复制构造函数
 	{
 		num = starCopy.num;
 		pic = starCopy.pic;
+	}
+	star(const int equalNum)//复制整形构造函数
+	{
+		if (equalNum <= 0)
+		{
+			num = 0;
+			pic = "";
+		}
+		else
+		{
+			num = equalNum;
+			pic = "";
+			for (int i = 0; i < equalNum; i++)
+			{
+				pic += "*";
+			};
+		}
 	}
 	void show()//函数运算符
 	{
@@ -137,15 +172,15 @@ int main()
 {
 	star A;
 	A += 5;
-	cout << A;
-	star B = A+10;//使用复制构造函数
+	cout << (string)A;
+	star B = 10;//使用复制构造函数
 	star C;
 	C = B - 1;//使用复制运算符
-	cout << B;
-	cout << C;
+	cout << (string)B;
+	cout << (string)C;
 	star D;
 	D = B - A;
-	cout << D;
+	cout << (string)D;
 	if (A == A) { cout << "true" << endl; }
 	if (A != B) { cout << "true" << endl; }
 	if (A != A) { cout << "true" << endl; }//不会输出
